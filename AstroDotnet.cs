@@ -4,11 +4,58 @@ namespace astro_dotnet
 {
 	public class AstroUtil
 	{
-		public float RightAscension;
-		public float Declination;
-		public float Time;
-		public float Latitude;
-		public float Longitude;
+		private float rightAscension, declination;
+		private float latitude, longitude;
+		private float time;
+
+		public float Declination
+		{
+			get
+			{
+				return declination;
+			}
+			set
+			{
+				declination = value;
+			}
+		}
+
+		public float ConvertDeclinationToFloat(Int32 degrees, Int32 minutes, Int32 seconds, string cardinal)
+		{
+			float calcValue = (float)degrees + ((float)minutes / 60) + ((float)seconds / 60 / 60);
+
+			switch (cardinal)
+			{
+				case "N":
+					break;
+				case "S":
+					calcValue = -(calcValue);
+					break;
+				default:
+					break;
+			}
+
+			return calcValue;
+		}
+
+		public float RightAscension
+		{
+			get
+			{
+				return rightAscension;
+			}
+			set
+			{
+				rightAscension = value;
+			}
+		}
+
+		public float ConvertRightAscensionToFloat(Int32 hours, Int32 minutes, Int32 seconds)
+		{
+			float calcValue = ((float)hours + ((float)minutes / 60) + ((float)seconds / 60 / 60)) * 15;
+
+			return calcValue;
+		}
 
 		public Int64 GetDaysFromEpoch()
 		{
@@ -20,68 +67,83 @@ namespace astro_dotnet
 			return duration.Days;
 		}
 
-		public void SetDeclination(Int32 degrees, Int32 minutes, Int32 seconds, string cardinal)
+		public float Latitude
+		{
+			get
+			{
+				return latitude;
+			}
+			set
+			{
+				latitude = value;
+			}
+		}
+
+		public float ConvertLatitudeToFloat(Int32 degrees, Int32 minutes, Int32 seconds, string cardinal)
 		{
 			float calcValue = (float)degrees + ((float)minutes / 60) + ((float)seconds / 60 / 60);
 
 			switch (cardinal)
 			{
 				case "N":
-					Declination = calcValue;
 					break;
 				case "S":
-					Declination = -(calcValue);
+					calcValue = -(calcValue);
 					break;
 				default:
-					Declination = calcValue;
 					break;
 			}
+
+			return calcValue;
 		}
 
-		public void SetRightAscension(Int32 hours, Int32 minutes, Int32 seconds)
+		public float Longitude
 		{
-			RightAscension = ((float)hours + ((float)minutes / 60) + ((float)seconds / 60 / 60)) * 15;
-		}
-
-		public void SetLatitude(Int32 degrees, Int32 minutes, Int32 seconds, string cardinal)
-		{
-			float calcValue = (float)degrees + ((float)minutes / 60) + ((float)seconds / 60 / 60);
-
-			switch (cardinal)
+			get
 			{
-				case "N":
-					Latitude = calcValue;
-					break;
-				case "S":
-					Latitude = -(calcValue);
-					break;
-				default:
-					Latitude = calcValue;
-					break;
+				return longitude;
+			}
+			set
+			{
+				longitude = value;
 			}
 		}
 
-		public void SetLongitude(Int32 degrees, Int32 minutes, Int32 seconds, string cardinal)
+		public float ConvertLongitudeToFloat(Int32 degrees, Int32 minutes, Int32 seconds, string cardinal)
 		{
 			float calcValue = (float)degrees + ((float)minutes / 60) + ((float)seconds / 60 / 60);
 
 			switch (cardinal)
 			{
 				case "E":
-					Longitude = calcValue;
 					break;
 				case "W":
-					Longitude = -(calcValue);
+					calcValue = -(calcValue);
 					break;
 				default:
-					Longitude = calcValue;
 					break;
+			}
+
+			return calcValue;
+		}
+
+		public float Time
+		{
+			get
+			{
+				return time;
+			}
+			set
+			{
+				time = value;
 			}
 		}
 
-		public void SetTime(Int32 hours, Int32 minutes)
+		public float ConvertTimeToFloat(Int32 hours, Int32 minutes)
 		{
-			Time = (float)hours + ((float)minutes / 60);
+			float calcValue = (float)hours + ((float)minutes / 60);
+
+			return calcValue;
 		}
 	}
 }

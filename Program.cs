@@ -9,27 +9,28 @@ namespace astro_dotnet
 			AstroUtil astroUtil = new AstroUtil();
 
 			// Test Right Ascension
-			astroUtil.SetRightAscension(3, 27, 30);
+			astroUtil.RightAscension = astroUtil.ConvertRightAscensionToFloat(3, 27, 30);
 			Console.WriteLine("Right Ascension is " + astroUtil.RightAscension.ToString());
 
 			// Test Declination
-			astroUtil.SetDeclination(36, 3, 27, "N");
+			astroUtil.Declination = astroUtil.ConvertDeclinationToFloat(36, 3, 27, "N");
 			Console.WriteLine("Declination is " + astroUtil.Declination.ToString());
 
 			// Test Latitude
-			astroUtil.SetLatitude(39, 22, 4, "N");
+			astroUtil.Latitude = astroUtil.ConvertLatitudeToFloat(39, 22, 4, "N");
 			Console.WriteLine("Latitude is " + astroUtil.Latitude.ToString());
 
 			// Test Longitude
-			astroUtil.SetLongitude(84, 12, 5, "W");
+			astroUtil.Longitude = astroUtil.ConvertLongitudeToFloat(84, 12, 5, "W");
 			Console.WriteLine("Longitude is " + astroUtil.Longitude.ToString());
 
 			// Test Time
-			astroUtil.SetTime(16, 30);
+			astroUtil.Time = astroUtil.ConvertTimeToFloat(16, 30);
 			Console.WriteLine("Time is " + astroUtil.Time.ToString());
 
 			// Test Days From Epoch
-			Console.WriteLine("Days elapsed from beginning of epoch: " + astroUtil.GetDaysFromEpoch().ToString());
+			long daysFromEpoch = astroUtil.GetDaysFromEpoch();
+			Console.WriteLine("Days elapsed from beginning of epoch: " + daysFromEpoch.ToString() + " (" + (daysFromEpoch / 365).ToString() + " years)");
 		}
 	}
 }
