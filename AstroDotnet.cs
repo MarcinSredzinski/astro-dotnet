@@ -52,7 +52,7 @@ namespace astro_dotnet
 
 		public float ConvertRightAscensionToFloat(Int32 hours, Int32 minutes, Int32 seconds)
 		{
-			float calcValue = ((float)hours + ((float)minutes / 60) + ((float)seconds / 60 / 60)) * 15;
+			float calcValue = ((float)hours * 15) + ((float)minutes / 4) + ((float)seconds / 240);
 
 			return calcValue;
 		}
